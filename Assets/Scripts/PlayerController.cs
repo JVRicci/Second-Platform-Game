@@ -93,6 +93,10 @@ public class PlayerScript : MonoBehaviour
             double_jump = true;
         }
 
+        if (other.gameObject.layer == 6){
+            Destroy(gameObject);
+        }
+
         
     }
     private void OnCollisionExit2D(Collision2D other)
