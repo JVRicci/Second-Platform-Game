@@ -93,11 +93,14 @@ public class PlayerScript : MonoBehaviour
             double_jump = true;
         }
 
-        if (other.gameObject.layer == 6){
+        if (other.gameObject.tag == "Spike" ){
             Destroy(gameObject);
+            GameController.instance.ShowGameOver();
         }
 
-        
+        if (other.gameObject.tag == "NextStageCheckpoint"){
+            GameController.instance.NextStage();
+        }
     }
     private void OnCollisionExit2D(Collision2D other)
     {
