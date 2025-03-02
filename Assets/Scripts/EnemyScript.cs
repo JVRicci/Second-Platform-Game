@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyScript : MonoBehaviour
 {
-    private Rigidbody rig;
+    private Rigidbody2D rig;
     private Animator anim;
 
     [SerializeField] 
@@ -19,11 +20,17 @@ public class EnemyScript : MonoBehaviour
 
     private bool colliding;
 
+    private BoxCollider2D box_col;
+    private CircleCollider2D circle_col;
+
+    public LayerMask layer;
     // Start is called before the first frame update
     void Start()
     {
-        rig = GetComponent<Rigidbody>();
+        rig = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+        box_col = GetComponent<BoxCollider2D>();
+        circle_col = GetComponent<CircleCollider2D>();
     }
 
     // Update is called once per frame
@@ -33,10 +40,35 @@ public class EnemyScript : MonoBehaviour
         //O velocity.y faz com que n tenha movimentação no eixo y
         rig.velocity = new Vector2(speed, rig.velocity.y);
 
-        colliding = Physics2D.Linecast(right_collision.position, left_collision.position);
+        //Cria uma linha invisivel que detecta um raio de colisão 
+        colliding = Physics2D.Linecast(right_collision.position, left_collision.position, layer);
 
+        // QUando ocorrer a colisão, ele vai fazer com que o eixo x se inverta
+        // O speed indica o eixo x
         if(colliding){
-            
+            transform.localScale = new Vector2(transform.localScale.x * -1f, transform.localScale.y );
+            speed *= -1f;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D other) {
+        if( other.gameObject.tag == "Player"){
+            // Verifica se onde que o player colidiu, se foi por cima ou em outro angulo
+            float height = other.contacts[0].point.y - head_collision.position.y;
+            // Caso tenha sido por cima
+            if( height > 0 ){
+                // Faz com que o player pule após caiu no inimigo
+                other.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
+                anim.SetTrigger("Death");
+                box_col.enabled = false;
+                circle_col.enabled = false;
+                rig.bodyType = RigidbodyType2D.Kinematic;
+                Destroy(gameObject, .3f);
+            }
+            else{
+                Destroy(other.gameObject);
+
+            }
         }
     }
 }
