@@ -22,6 +22,8 @@ public class PlayerScript : MonoBehaviour
     private BoxCollider2D box_col;
     private Animator anim;
     
+
+    private bool is_blowing = false;
     // Lista de objetos / inimigos que causam dano ao personagem
     private String[] enemies = {"Spike", "Saw"};
 
@@ -72,7 +74,8 @@ public class PlayerScript : MonoBehaviour
         bool jump = Input.GetButtonDown("Jump");
         // Implementa pulo no player
         if(jump){
-            if (can_jump){
+            // Verifica se pode pular e se não está flutuando
+            if (can_jump && !is_blowing ){
                 // Ativa a animação de pulo do player, 
                 // O nome entre aspas é da variavel criada dentro do animator, a qual é um bool
                 anim.SetBool("jumping", true);
@@ -113,5 +116,22 @@ public class PlayerScript : MonoBehaviour
             can_jump = false;
         // Permite pular duas vezes
         } 
+    }
+
+    // Verifica enquanto está colidindo com um objeto de trigger ativo
+    void OnTriggerStay2D(Collider2D other)
+    {
+        // Enquanto estiver flutuando, desativa o double jump
+        if(other.gameObject.tag == "Fan") 
+            is_blowing = true;
+            double_jump = false;
+    }
+
+    // Verifica se saiu da colisão com object trigger
+    void OnTriggerExit2D(Collider2D other)
+    {
+        // Verifica se parou de flutuar com o ventilador
+        if (other.gameObject.tag == "Fan" )
+            is_blowing = false;
     }
 }

@@ -15,9 +15,9 @@ GameObject:
   - component: {fileID: 3261990677359008675}
   - component: {fileID: 516512410129402873}
   - component: {fileID: 2051816605110919581}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: PlayerPrefab
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -79,7 +79,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingOrder: 3
   m_Sprite: {fileID: -6367560908665664636, guid: 813e84bcf4dfe594eb6a423bd0a23738, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -125,8 +125,8 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.0064369673, y: -0.04230639}
-  m_Size: {x: 0.1912611, y: 0.24512748}
+  m_Offset: {x: 0.0064369673, y: -0.025662046}
+  m_Size: {x: 0.1912611, y: 0.2118388}
   m_Direction: 0
 --- !u!50 &2509820902438958413
 Rigidbody2D:
@@ -205,3 +205,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b32e48f1aee99984b99cb6ac30433f96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  score: 0

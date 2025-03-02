@@ -24,6 +24,7 @@ public class EnemyScript : MonoBehaviour
     private CircleCollider2D circle_col;
 
     public LayerMask layer;
+    private bool player_destroyed;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,19 +56,21 @@ public class EnemyScript : MonoBehaviour
         if( other.gameObject.tag == "Player"){
             // Verifica se onde que o player colidiu, se foi por cima ou em outro angulo
             float height = other.contacts[0].point.y - head_collision.position.y;
-            // Caso tenha sido por cima
-            if( height > 0 ){
+            // Caso tenha sido por cima e o player ainda exista
+            if( height > 0 && !player_destroyed){
                 // Faz com que o player pule após caiu no inimigo
                 other.gameObject.GetComponent<Rigidbody2D>().AddForce(Vector2.up * 5, ForceMode2D.Impulse);
                 anim.SetTrigger("Death");
                 box_col.enabled = false;
                 circle_col.enabled = false;
                 rig.bodyType = RigidbodyType2D.Kinematic;
-                Destroy(gameObject, .3f);
+                Destroy(gameObject, .2f);
             }
             else{
+                //Ele marca como destruido o player
+                player_destroyed = true;
+                GameController.instance.ShowGameOver();
                 Destroy(other.gameObject);
-
             }
         }
     }

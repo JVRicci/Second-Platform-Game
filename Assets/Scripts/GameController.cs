@@ -37,4 +37,8 @@ public class GameController : MonoBehaviour
     public void NextStage(){
         SceneManager.LoadScene(next_stage_name);
     }
+
+    public void StartGame(){
+        SceneManager.LoadScene("Phase_1");
+    }
 }
