@@ -25,10 +25,10 @@ public class SawScript : MonoBehaviour
     void Movement(){
         if(dir){
             // Faz com que a serra se movimente para a direita, e no else, faz com que vá para esquerda
-            transform.Translate(Vector2.right * speed * timer);
+            transform.Translate(Vector2.right * speed * Time.deltaTime);
         }
         else{
-            transform.Translate(Vector2.right * speed * timer);
+            transform.Translate(Vector2.left * speed * Time.deltaTime);
         }
 
         timer += Time.deltaTime;
@@ -39,10 +39,4 @@ public class SawScript : MonoBehaviour
         }
     }
 
-    void OllisionEnter2D(Collision2D other)
-    {
-        if(other.gameObject.tag == "Player"){
-            Destroy(other.gameObject);
-        }
-    }
 }

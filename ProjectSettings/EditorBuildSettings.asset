@@ -9,10 +9,16 @@ EditorBuildSettings:
     path: Assets/Scenes/Phase_1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
+    path: Assets/Scenes/Phase_2.unity
+    guid: 91268800a2f687f43b0c5d54c87248d4
+  - enabled: 1
+    path: Assets/Scenes/Phase_3.unity
+    guid: 8cec668ddce868d44bc0b5f58de7932f
+  - enabled: 1
     path: Assets/Scenes/Phase_4.unity
     guid: 07fef90a85d3f874fa287628c6e6bdd9
   - enabled: 1
-    path: Assets/Scenes/Phase_2.unity
-    guid: 91268800a2f687f43b0c5d54c87248d4
+    path: Assets/Scenes/Phase_5.unity
+    guid: a81b2fe66ac6b5441872012f16fb40ef
   m_configObjects: {}
   m_UseUCBPForAssetBundles: 0

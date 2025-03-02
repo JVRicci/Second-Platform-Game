@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Security;
 
@@ -19,7 +21,9 @@ public class PlayerScript : MonoBehaviour
     private Rigidbody2D rig;
     private BoxCollider2D box_col;
     private Animator anim;
-
+    
+    // Lista de objetos / inimigos que causam dano ao personagem
+    private String[] enemies = {"Spike", "Saw"};
 
     // Start is called before the first frame update
     void Start()
@@ -93,7 +97,7 @@ public class PlayerScript : MonoBehaviour
             double_jump = true;
         }
 
-        if (other.gameObject.tag == "Spike" ){
+        if (enemies.Contains(other.gameObject.tag)){
             Destroy(gameObject);
             GameController.instance.ShowGameOver();
         }
