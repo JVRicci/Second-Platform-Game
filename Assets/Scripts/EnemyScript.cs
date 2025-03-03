@@ -12,6 +12,7 @@ public class EnemyScript : MonoBehaviour
     private float speed;
 
     // Faz com que o inimigo detecte a colisão de um dos lados quando um dos dois estiver ativo
+    // Essas variaveis são habilitadas na interface da unity, dessa forma é necessário arrastar os componetes para manipulalos
     public Transform right_collision;
     public Transform left_collision;
 
