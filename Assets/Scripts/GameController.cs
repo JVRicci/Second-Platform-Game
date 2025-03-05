@@ -15,11 +15,13 @@ public class GameController : MonoBehaviour
     public GameObject game_over;
     public static GameController instance;
     // Start is called before the first frame update
+    // Cria uma intancia do gameController para utilização de método estático
     void Start()
     {
         instance = this;
     }
 
+    // Função chamada quando o player pega colide com a maçã e "coleta"
     public void UpdateScoreText(){
         score_text.text = total_score.ToString().PadLeft(4, '0');
     }
@@ -34,6 +36,7 @@ public class GameController : MonoBehaviour
         SceneManager.LoadScene(stage_name);
     }
 
+    //Carrega outra cena setada na interface da unity. 
     public void NextStage(){
         SceneManager.LoadScene(next_stage_name);
     }
